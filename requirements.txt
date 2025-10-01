@@ -1,0 +1,9 @@
+streamlit
+openai
+chromadb
+python-dotenv
+langchain-community
+langchain-text-splitters
+pillow
+pypdf
+docx2txt
