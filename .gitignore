@@ -1,0 +1,52 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.pdb
+*.egg-info/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.conda/
+*.conda
+*.envrc
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.local
+secrets.json
+
+# Streamlit
+.streamlit/
+
+# Data files (you don’t want to commit raw PDFs/Docs)
+data/
+
+# Large artifacts
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+*.csv
+
+# Cache or temp
+tmp/
+temp/
+.cache/
+db.lock

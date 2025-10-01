@@ -1,7 +1,11 @@
 {
-  "routine_image": "assets/images/routine_image.png",
+  "routine_image": "assets/images/routine.png",
   "morning_routine": "assets/images/morning_routine.png",
-  "wash_face": "assets/images/wash_face.png",
-  "evening_routine": "assets/images/evening_routine.png",
-  "checklist": "assets/images/checklist.png"
+  "wake_up": "assets/images/wake_up.png",
+  "brush_teeth": "assets/images/brush_teeth.png",
+  "get_dressed": "assets/images/get_dressed.png",
+  "breakfast": "assets/images/breakfast.png",
+  "pack_bag": "assets/images/pack_bag.png",
+  "use_toilet": "assets/images/toilet.png"
+
 }
