@@ -1,4 +1,4 @@
-import os, re, json
+import os, re, json, time, hashlib
 from pathlib import Path
 import streamlit as st
 import chromadb
@@ -6,8 +6,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from utils.dialect import detect_leb_chat, normalize_for_embedding
 from demo_answers import DEMO_RESPONSES
-import time
-
+import numpy as np
 
 # ---------------- Env ----------------
 env_path = Path(__file__).parent / ".env"
@@ -31,7 +30,7 @@ def render_images_from_answer(answer_text: str):
     tags = IMG_TOKEN.findall(answer_text)
     for t in tags:
         if t in IMAGE_MAP:
-            st.image(IMAGE_MAP[t], caption=t.replace("_"," ").title(), width=500)
+            st.image(IMAGE_MAP[t], caption=t.replace("_", " ").title(), width=500)
 
 # ---------------- Connect to Chroma ----------------
 @st.cache_resource
@@ -40,10 +39,6 @@ def get_collection():
     return chroma_client.get_or_create_collection(name=COLLECTION_NAME)
 
 def compose_context(documents, metadatas, cap=12000) -> str:
-    """
-    Format KB chunks into a single context string with source labels,
-    capped at a total character length.
-    """
     out, used = [], 0
     for d, m in zip(documents, metadatas):
         src = m.get("file", m.get("source", "kb"))
@@ -55,12 +50,43 @@ def compose_context(documents, metadatas, cap=12000) -> str:
     return "\n".join(out)
 
 def show_img(path, caption=None, width=500):
-    # width controls size; do NOT pass use_container_width if you want fixed pixel width
     st.image(path, caption=caption, width=width)
 
-
-
 collection = get_collection()
+
+# ---------------- Precompute Demo Question Embeddings ----------------
+@st.cache_resource
+def get_demo_embeddings():
+    demo_keys = list(DEMO_RESPONSES.keys())
+    embs = client.embeddings.create(
+        model="text-embedding-3-small",
+        input=demo_keys
+    ).data
+    emb_vectors = [e.embedding for e in embs]
+    return dict(zip(demo_keys, emb_vectors))
+
+DEMO_EMBEDS = get_demo_embeddings()
+
+def find_similar_demo(query: str, threshold: float = 0.88):
+    """
+    Find the most semantically similar demo question using cosine similarity.
+    Returns (best_key, similarity_score)
+    """
+    q_emb = client.embeddings.create(
+        model="text-embedding-3-small",
+        input=query
+    ).data[0].embedding
+
+    def cosine_sim(a, b):
+        a, b = np.array(a), np.array(b)
+        return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+    sims = {k: cosine_sim(q_emb, v) for k, v in DEMO_EMBEDS.items()}
+    best_key = max(sims, key=sims.get)
+    best_score = sims[best_key]
+    if best_score >= threshold:
+        return best_key, best_score
+    return None, None
 
 # ---------------- UI ----------------
 st.set_page_config(page_title="Autism Support Assistant", page_icon="🧩", layout="wide")
@@ -73,71 +99,78 @@ chat = st.container()
 for m in st.session_state.history:
     with chat.chat_message(m["role"]):
         if m.get("is_demo"):
-            # Replay demo answers with block rendering
+            # Demo responses
             for block in m["content"]:
                 if block["type"] == "text":
                     st.markdown(block["content"], unsafe_allow_html=True)
                 elif block["type"] == "image" and block["tag"] in IMAGE_MAP:
                     st.image(
                         IMAGE_MAP[block["tag"]],
-                        caption=block["tag"].replace("_"," ").title(),
+                        caption=block["tag"].replace("_", " ").title(),
                         width=500
                     )
         else:
-            # Normal GPT or user messages
-            st.markdown(m["content"])
+            # Normal GPT or user messages — preserve formatting
+            st.markdown(m["content"], unsafe_allow_html=True)
 
-
+# ---------------- User Input ----------------
 user_query = st.chat_input("Type your question here...")
 if not user_query:
     st.stop()
+
 normalized_query = user_query.lower().strip()
-# Exact or partial match
-for key, resp_data in DEMO_RESPONSES.items():
-    if key in normalized_query:
-        answer_blocks = resp_data["answer"]
 
-        # Show user bubble first
-        with chat.chat_message("user"):
-            st.markdown(user_query)
-        st.session_state.history.append({"role": "user", "content": user_query})
-        s = 4
-        x = "Generating response..."
-        if key  == "morning routine" or key == "dressing independently":
-            s = 8
-            x = "Generating image..."
-        with st.spinner(x):
-            time.sleep(s)
+# ---------------- Semantic Match in Demo Answers ----------------
+similar_key, score = find_similar_demo(normalized_query)
 
+# Highlight the "SIMILAR" line for visibility while testing
+if similar_key:
+    st.markdown(
+        f"<div style='padding:8px; border-radius:6px; color:yellow;'>"
+        f"<b>SIMILAR:</b> {similar_key}</div>",
+        unsafe_allow_html=True
+    )
+else:
+    st.markdown(
+        f"<div style='padding:8px; border-radius:6px; color:yellow;'>"
+        f"<b>SIMILAR:</b> <i>No Match Found</i></div>",
+        unsafe_allow_html=True
+    )
 
-        # Then show assistant bubble
-        with chat.chat_message("assistant"):
-            # Loop through blocks: text and images
-            for block in answer_blocks:
-                if block["type"] == "text":
-                    st.markdown(block["content"], unsafe_allow_html=True)
-                elif block["type"] == "image":
-                    if block["tag"] in IMAGE_MAP:
-                        st.image(
-                            IMAGE_MAP[block["tag"]],
-                            caption=block["tag"].replace("_"," ").title(),
-                            width=500
-                        )
+if similar_key:
+    answer_blocks = DEMO_RESPONSES[similar_key]["answer"]
 
-        # Save full content as a string (for history)
-        joined_text = " ".join(
-            block["content"] for block in answer_blocks if block["type"] == "text"
-        )
-        st.session_state.history.append({
-            "role": "assistant",
-            "content": answer_blocks,   # keep full block list
-            "is_demo": True
-        })
+    with chat.chat_message("user"):
+        st.markdown(user_query)
+    st.session_state.history.append({"role": "user", "content": user_query})
 
+    s = 4
+    x = "Generating response..."
+    if similar_key in ["morning routine", "dressing independently"]:
+        s = 8
+        x = "Generating image..."
+    with st.spinner(x):
+        time.sleep(s)
 
-        st.stop()  # Skip GPT, return immediately
+    with chat.chat_message("assistant"):
+        for block in answer_blocks:
+            if block["type"] == "text":
+                st.markdown(block["content"], unsafe_allow_html=True)
+            elif block["type"] == "image" and block["tag"] in IMAGE_MAP:
+                st.image(
+                    IMAGE_MAP[block["tag"]],
+                    caption=block["tag"].replace("_", " ").title(),
+                    width=500
+                )
 
+    st.session_state.history.append({
+        "role": "assistant",
+        "content": answer_blocks,
+        "is_demo": True
+    })
+    st.stop()
 
+# ---------------- Language + Embedding Prep ----------------
 is_leb = detect_leb_chat(user_query)
 processed_query = normalize_for_embedding(user_query) if is_leb else user_query
 
@@ -156,45 +189,45 @@ docs = q.get("documents", [[]])[0]
 metas = q.get("metadatas", [[]])[0]
 dists = q.get("distances", [[]])[0] if "distances" in q else [0.0] * len(docs)
 
-# filter by distance (lower is better)
-# Soften the threshold: allow more chunks in
 triples = [(d, m, s) for d, m, s in zip(docs, metas, dists) if s < 0.4]
-
-# If nothing passes the filter, still keep the top 2 raw chunks as a fallback context
 if not triples and docs:
     triples = list(zip(docs[:2], metas[:2], dists[:2]))
-
 docs, metas = zip(*[(d, m) for d, m, _ in triples]) if triples else ([], [])
 
-
-# build context string (see updated compose_context below)
 context = compose_context(docs, metas, cap=12000)
 
 # ---------------- Prompt ----------------
 system_prompt = """
 You are a compassionate autism support guide for parents.
-- Use KB excerpts if available, otherwise fallback to your knowledge.
-- If visuals are relevant, reference them as [[image:tag]].
-- Write detailed, clear, and supportive answers.
-- Always add in the end: "This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+Use KB excerpts if available, otherwise fallback to your knowledge.
+
+ALWAYS reply in this structured HTML format:
+<b>Goal:</b> ...
+<b>Why it matters:</b> ...
+<b>Step-by-step guide:</b> ...
+<b>Friendly tip:</b> ...
+<b>📚 References & Resources:</b> ...
+
+If visuals are relevant, reference them as [[image:tag]].
+
+End every message with:
+"This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
 
 Language rules:
-- If the parent speaks in Lebanese chat dialect (romanized Arabic like "keef nharak"), reply in the same Lebanese chat dialect.
-- Do not switch to Egyptian or other dialects.
+- If the parent speaks in Lebanese chat dialect (romanized Arabic like "keef nharak"), reply in the same dialect.
 - If the parent writes in English, reply in English.
 """
 
 messages = [{"role": "system", "content": system_prompt}]
 for m in st.session_state.history:
     if m.get("is_demo"):
-        # Demo answers: flatten to text so GPT can use them as context
         demo_text = " ".join(
             block["content"] for block in m["content"] if block["type"] == "text"
         )
         messages.append({"role": m["role"], "content": demo_text})
     else:
-        # Normal user or GPT answers
         messages.append({"role": m["role"], "content": m["content"]})
+
 kb_status = "STRONG_KB" if docs else "NO_KB"
 messages.append({
     "role": "user",
@@ -203,10 +236,8 @@ messages.append({
                f"KB Status: {kb_status}"
 })
 
-
-
-# Spinner while waiting for GPT
-with st.spinner("Generating response..."):
+# ---------------- GPT Response ----------------
+with st.spinner("Generating structured response..."):
     resp = client.chat.completions.create(
         model=CHAT_MODEL,
         messages=messages,
@@ -217,7 +248,7 @@ with st.spinner("Generating response..."):
 answer = resp.choices[0].message.content.strip()
 
 with chat.chat_message("assistant"):
-    st.markdown(answer)
+    st.markdown(answer, unsafe_allow_html=True)
     render_images_from_answer(answer)
     if docs:
         with st.expander("📖 Sources", expanded=False):
