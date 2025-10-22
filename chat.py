@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from utils.dialect import detect_leb_chat, normalize_for_embedding
 from demo_answers import DEMO_RESPONSES
 import numpy as np
+from memory_manager import MemoryManager  # ← NEW
 
 # ---------------- Env ----------------
 env_path = Path(__file__).parent / ".env"
@@ -68,10 +69,7 @@ def get_demo_embeddings():
 DEMO_EMBEDS = get_demo_embeddings()
 
 def find_similar_demo(query: str, threshold: float = 0.88):
-    """
-    Find the most semantically similar demo question using cosine similarity.
-    Returns (best_key, similarity_score)
-    """
+    """Find the most semantically similar demo question using cosine similarity."""
     q_emb = client.embeddings.create(
         model="text-embedding-3-small",
         input=query
@@ -95,11 +93,17 @@ st.title("🧩 Autism Support Assistant")
 if "history" not in st.session_state:
     st.session_state.history = []
 
+# ---------------- Memory Manager ----------------
+if "memory_manager" not in st.session_state:
+    st.session_state.memory_manager = MemoryManager()
+
+if "session_id" not in st.session_state:
+    st.session_state.session_id = st.session_state.memory_manager.create_session("default_user")
+
 chat = st.container()
 for m in st.session_state.history:
     with chat.chat_message(m["role"]):
         if m.get("is_demo"):
-            # Demo responses
             for block in m["content"]:
                 if block["type"] == "text":
                     st.markdown(block["content"], unsafe_allow_html=True)
@@ -110,7 +114,6 @@ for m in st.session_state.history:
                         width=500
                     )
         else:
-            # Normal GPT or user messages — preserve formatting
             st.markdown(m["content"], unsafe_allow_html=True)
 
 # ---------------- User Input ----------------
@@ -120,10 +123,24 @@ if not user_query:
 
 normalized_query = user_query.lower().strip()
 
+# ---------------- Memory: Check for Repeat Query ----------------
+found, cached_answer = st.session_state.memory_manager.find_recent_match(
+    st.session_state.session_id, user_query
+)
+if found:
+    with chat.chat_message("user"):
+        st.markdown(user_query)
+    st.session_state.history.append({"role": "user", "content": user_query})
+
+    with chat.chat_message("assistant"):
+        st.markdown(cached_answer, unsafe_allow_html=True)
+
+    st.session_state.history.append({"role": "assistant", "content": cached_answer})
+    st.stop()
+
 # ---------------- Semantic Match in Demo Answers ----------------
 similar_key, score = find_similar_demo(normalized_query)
 
-# Highlight the "SIMILAR" line for visibility while testing
 if similar_key:
     st.markdown(
         f"<div style='padding:8px; border-radius:6px; color:yellow;'>"
@@ -137,12 +154,27 @@ else:
         unsafe_allow_html=True
     )
 
+# ---------------- Memory: Search Packed Summaries ----------------
+found_summary, related_info = st.session_state.memory_manager.search_packed(
+    st.session_state.session_id, user_query
+)
+if found_summary:
+    st.markdown(
+        f"<div style='padding:8px; border-radius:6px; color:lightgreen;'>"
+        f"<b>Found related past topic in memory:</b> {related_info}</div>",
+        unsafe_allow_html=True
+    )
+
+# ---------------- DEMO ANSWER HANDLER ----------------
 if similar_key:
     answer_blocks = DEMO_RESPONSES[similar_key]["answer"]
 
     with chat.chat_message("user"):
         st.markdown(user_query)
     st.session_state.history.append({"role": "user", "content": user_query})
+    st.session_state.memory_manager.add_message(
+        st.session_state.session_id, "user", user_query
+    )
 
     s = 4
     x = "Generating response..."
@@ -168,6 +200,15 @@ if similar_key:
         "content": answer_blocks,
         "is_demo": True
     })
+
+    # Store demo response in memory
+    text_answer = " ".join(
+        block["content"] for block in answer_blocks if block["type"] == "text"
+    )
+    st.session_state.memory_manager.add_message(
+        st.session_state.session_id, "assistant", text_answer
+    )
+
     st.stop()
 
 # ---------------- Language + Embedding Prep ----------------
@@ -177,6 +218,9 @@ processed_query = normalize_for_embedding(user_query) if is_leb else user_query
 with chat.chat_message("user"):
     st.markdown(user_query)
 st.session_state.history.append({"role": "user", "content": user_query})
+st.session_state.memory_manager.add_message(
+    st.session_state.session_id, "user", user_query
+)
 
 # ---------------- Retrieval ----------------
 query_embedding = client.embeddings.create(
@@ -228,6 +272,12 @@ for m in st.session_state.history:
     else:
         messages.append({"role": m["role"], "content": m["content"]})
 
+if found_summary:
+    messages.append({
+        "role": "system",
+        "content": f"Here is a past related summary from previous interactions:\n{related_info}"
+    })
+
 kb_status = "STRONG_KB" if docs else "NO_KB"
 messages.append({
     "role": "user",
@@ -258,3 +308,6 @@ with chat.chat_message("assistant"):
                 st.markdown(f"**{src}**\n\n{snippet}")
 
 st.session_state.history.append({"role": "assistant", "content": answer})
+st.session_state.memory_manager.add_message(
+    st.session_state.session_id, "assistant", answer
+)

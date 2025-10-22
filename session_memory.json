@@ -1,0 +1,81 @@
+{
+  "bb2cd7c7-7bab-4631-aca4-a2f52d260387": {
+    "user_id": "default_user",
+    "created_at": "2025-10-22T18:36:11.464212",
+    "recent": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "<b>Goal:</b> Welcome you and offer support for any questions or concerns you may have about autism or your child’s development.\n<b>Why it matters:</b> Early support and information can make a big difference in understanding your child’s needs and helping them thrive.\n<b>Step-by-step guide:</b>\n<ol>\n  <li>Let me know what brings you here today—are you looking for information, support, or have specific concerns?</li>\n  <li>If you have questions about autism signs, diagnosis, or daily routines, just ask! I’m here to help.</li>\n  <li>If you’d like, I can also provide resources such as sample visual routine charts for morning and bedtime to support your child’s daily structure.</li>\n</ol>\n<b>Friendly tip:</b> No question is too small—feel free to share anything on your mind. I’m here to support you without judgment.\n<b>📚 References & Resources:</b>\n<ul>\n  <li>Free screening and support resources are available on our CereAura platform.</li>\n  <li>Ask for a sample visual routine chart if you think it might help your child’s day.</li>\n</ul>\n\nThis is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      }
+    ],
+    "packed": []
+  },
+  "735965e1-d013-492a-b858-3f3f8b6ba9bc": {
+    "user_id": "default_user",
+    "created_at": "2025-10-22T18:51:12.555340",
+    "recent": [
+      {
+        "role": "assistant",
+        "content": "<b>Goal:</b> Support your child’s development, communication, and well-being after an autism diagnosis.\n<b>Why it matters:</b> Early, supportive action can help your child build skills, reduce challenges, and thrive at home, school, and in the community. Evidence-based interventions and family support are key to positive outcomes.\n\n<b>Step-by-step guide:</b>\n<ol>\n  <li><b>Learn about autism:</b> Reliable resources like the <a href=\"https://www.cdc.gov/ncbddd/autism/family-resources.html\" target=\"_blank\">CDC Family Resources</a> and <a href=\"https://www.autismspeaks.org/tool-kits\" target=\"_blank\">Autism Speaks Toolkits</a> offer helpful guides for families.</li>\n  <li><b>Start parent-mediated interventions:</b> Follow <a href=\"https://www.who.int/publications/i/item/9789240055986\" target=\"_blank\">WHO Guidelines</a> to use daily routines, play, and communication strategies at home. Simple activities—like narrating what you do, playing turn-taking games, and using visual supports—make a big difference.</li>\n  <li><b>Support communication:</b> Give your child extra time to respond—don’t interrupt or rush. This builds confidence and encourages more meaningful interaction (see Hanen Centre strategies).</li>\n  <li><b>Use visual supports and routines:</b> Visual schedules, timers, and social stories help your child understand what’s happening next and make transitions smoother. For example, use a timer to show when playtime will end and snack time will start.</li>\n  <li><b>Access therapies and services:</b> Consider therapies like speech-language therapy, occupational therapy, or applied behavior analysis (ABA) if recommended by your care team. These can be provided in-person or online.</li>\n  <li><b>Connect with support networks:</b> Join parent groups or online communities for emotional support and practical advice.</li>\n  <li><b>Take care of yourself:</b> Caring for a child with autism can be challenging. Make sure to seek support for your own well-being, too.</li>\n</ol>\n\n<b>Friendly tip:</b> Progress may be slow and uneven—celebrate every small step! You know your child best, and your love and patience are the most important tools you have.\n\n<b>📚 References & Resources:</b>\n<ul>\n  <li><a href=\"https://www.cdc.gov/ncbddd/autism/family-resources.html\" target=\"_blank\">CDC Family Resources for Autism</a></li>\n  <li><a href=\"https://www.autismspeaks.org/tool-kits\" target=\"_blank\">Autism Speaks Communication Toolkits</a></li>\n  <li><a href=\"https://www.who.int/publications/i/item/9789240055986\" target=\"_blank\">WHO Guidelines on Parent-Mediated Autism Interventions</a></li>\n  <li>Carr, E. G., & Durand, V. M. (1985). Functional communication training. <i>Journal of Applied Behavior Analysis</i></li>\n  <li>Hanen Centre Musical Language Strategies: <a href=\"https://www.hanen.org\" target=\"_blank\">www.hanen.org</a></li>\n</ul>\n\nThis is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      },
+      {
+        "role": "user",
+        "content": "and what consultation do you suggest, explain in brief"
+      },
+      {
+        "role": "assistant",
+        "content": "<b>Goal:</b> Recommend the most effective type of consultation for you and your child, focusing on practical, evidence-based support.\n<b>Why it matters:</b> The right consultation can empower you as a parent, help your child participate more actively, and set the stage for positive development.\n\n<b>Step-by-step guide:</b>\n<ol>\n  <li><b>Start with a parent-mediated intervention consultation:</b> This approach focuses on teaching you strategies to use at home, making daily routines and play more supportive for your child.</li>\n  <li><b>Empower your child through choice-making:</b> During the consultation, the therapist will guide you to identify moments in daily life where your child can choose between 2–3 options (like snacks, toys, or activities). This builds communication and independence (<i>see KB excerpt above</i>).</li>\n  <li><b>Use visual or verbal cues:</b> The therapist may show you how to use pictures, objects, or simple words to present choices, making it easier for your child to understand and respond.</li>\n  <li><b>Practice and reinforce:</b> You’ll learn how to encourage your child to make choices and celebrate their participation, turning everyday moments into learning opportunities.</li>\n  <li><b>Expand gradually:</b> As your child gets comfortable, the therapist will help you increase the complexity of choices to keep your child engaged and motivated.</li>\n</ol>\n\n<b>Friendly tip:</b> “Every small choice your child makes is a step toward confidence and communication. Parent-mediated consultations turn daily routines into powerful learning moments!”\n\n<b>📚 References & Resources:</b>\n<ul>\n  <li>CereAura Data: Parent-mediated interventions and choice-making strategies</li>\n  <li>WHO Parent Skills Training Program</li>\n  <li>Book a parent-mediated consultation or access visual choice boards on our CereAura platform</li>\n</ul>\n\nThis is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      },
+      {
+        "role": "user",
+        "content": "i want to teach social skills to my child, how?"
+      },
+      {
+        "role": "assistant",
+        "content": "<b>Goal:</b> Teach your child social skills using evidence-based, parent-led strategies like role-playing and structured turn-taking.\n<b>Why it matters:</b> Social skills are essential for making friends, communicating needs, and feeling included. Practicing these skills at home builds your child’s confidence and helps them use these abilities in real-life situations.\n\n<b>Step-by-step guide:</b>\n<ol>\n  <li><b>Pick a social scenario to practice:</b> Choose something relevant, like saying “hello,” introducing themselves, or asking to play. (<i>Bellini et al., 2007</i>)</li>\n  <li><b>Model the scenario:</b> Demonstrate the words, gestures, and facial expressions yourself. For example, wave and say, “Hello, my name is Sam!”</li>\n  <li><b>Encourage imitation:</b> Ask your child to copy your actions and words. Give gentle prompts if needed.</li>\n  <li><b>Repeat and build:</b> Practice the role-play several times, gradually adding variations or new phrases.</li>\n  <li><b>Make it fun and realistic:</b> Use props, toys, or involve siblings to keep practice engaging.</li>\n  <li><b>Practice turn-taking:</b> Use motivating games (blocks, rolling a ball, board games). Model taking turns and narrate: “My turn to roll the ball. Now your turn!”</li>\n  <li><b>Use visual cues:</b> Show a “turn” card or use hand gestures to indicate whose turn it is.</li>\n  <li><b>Prompt and praise:</b> Gently encourage your child to wait or pass the toy, and immediately praise their effort: “Great job waiting your turn!”</li>\n  <li><b>Generalize skills:</b> Encourage your child to use these skills in daily routines—greeting family members, sharing at snack time, or during playdates.</li>\n</ol>\n\n<b>Friendly tip:</b> Keep sessions short and positive. Celebrate all efforts, not just perfect responses. The more fun and relaxed the practice, the more your child will want to join in!\n\n<b>📚 References & Resources:</b>\n<ul>\n  <li>Bellini et al., 2007, Focus on Autism and Other Developmental Disabilities</li>\n  <li>WHO recommendations on parent- and therapist-led modeling</li>\n  <li>CereAura Data: Parent-led social interventions and structured turn-taking</li>\n</ul>\n\nThis is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      }
+    ],
+    "packed": [
+      {
+        "summary": "The user greeted with \"hi.\"",
+        "timestamp": "2025-10-22T18:52:20.537309"
+      },
+      {
+        "summary": "This text welcomes parents seeking support for autism or child development concerns, encouraging them to share questions or worries and offering guidance, resources, and a non-judgmental space. It outlines steps to start the conversation and offers tools like visual routine charts and screening resources via the CereAura platform, while clarifying that this is guidance, not a formal diagnosis.",
+        "timestamp": "2025-10-22T18:52:29.755353"
+      },
+      {
+        "summary": "To teach your child social skills, model appropriate behavior, role-play different social scenarios, encourage playdates, teach empathy by discussing feelings, give positive feedback, and practice sharing, listening, and taking turns in daily interactions.",
+        "timestamp": "2025-10-22T18:52:48.641405"
+      },
+      {
+        "summary": "Teach your child social skills through supportive, step-by-step practice—such as modeling greetings, role-playing, using fun activities to encourage turn-taking, offering praise, and generalizing skills to real-life situations. Keep sessions short and engaging with props or games. Early social skill development boosts confidence and relationships. Utilize available resources and seek professional guidance if needed.",
+        "timestamp": "2025-10-22T18:53:00.009309"
+      },
+      {
+        "summary": "To teach social skills and routines to your child, model desired behaviors, use clear instructions, practice regularly through role-play, reinforce positive actions, and be patient and consistent. Create structured routines and use visual schedules if helpful. Encourage your child to interact with peers and praise effort and progress.",
+        "timestamp": "2025-10-22T18:53:19.878287"
+      },
+      {
+        "summary": "Social stories are structured, narrative-based tools used to teach children with autism social skills and routines by breaking down complex social situations into simple, predictable steps. Recommended by experts such as DSM-5 and WHO, social stories help children understand expectations, reduce anxiety, and improve behavior by modeling and practicing appropriate actions. The process involves identifying a behavior, creating a simple story with visuals, reading and practicing together, and reinforcing efforts. Evidence shows social stories are effective, especially for children facing challenges in social communication.",
+        "timestamp": "2025-10-22T18:53:22.605461"
+      },
+      {
+        "summary": "To understand if your child may be autistic, look for signs such as difficulty with social interactions, challenges with communication, repetitive behaviors, and strong routines or interests. Other indications can include sensitivity to sensory input or delayed speech. If you notice these signs, consider consulting a healthcare professional or specialist for an evaluation and diagnosis.",
+        "timestamp": "2025-10-22T18:53:34.853539"
+      },
+      {
+        "summary": "This text offers a step-by-step guide to recognizing early signs of autism in children and explains why early identification is important for timely support. Parents are advised to observe their child’s social interactions, repetitive behaviors, sensory sensitivities, play patterns, reactions to changes, and unusual responses to pain. If several signs are present, using a screening tool or consulting a specialist is recommended. The guide emphasizes that every child is different, and noticing patterns—not single behaviors—matters. References and further resources are provided, and the text clarifies that this is guidance, not a diagnosis.",
+        "timestamp": "2025-10-22T18:53:46.685773"
+      },
+      {
+        "summary": "If you suspect your child is autistic, seek evaluation from a healthcare professional or specialist. Early intervention and support can help your child develop important skills. Learn about autism, connect with support networks, and work with teachers and therapists to create an environment tailored to your child's needs. Patience, understanding, and advocacy are key.",
+        "timestamp": "2025-10-22T18:54:03.716146"
+      }
+    ]
+  }
+}
