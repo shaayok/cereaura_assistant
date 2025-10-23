@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from utils.dialect import detect_leb_chat, normalize_for_embedding
 from demo_answers import DEMO_RESPONSES
 import numpy as np
-from memory_manager import MemoryManager  # ← NEW
+from memory_manager import MemoryManager
 
 # ---------------- User Login ----------------
 from user_login import login_page
@@ -16,17 +16,17 @@ user_data = login_page()
 if not user_data:
     st.stop()  # wait until user logs in or registers
 
-# Once logged in, you can use:
+# Once logged in:
 user_id = user_data["id"]
 user_name = user_data["name"]
 has_autistic_child = user_data["has_autistic_child"]
 
-# Then pass user_id to memory/session
-if "memory_manager" not in st.session_state:
-    st.session_state.memory_manager = MemoryManager()
+# # Then pass user_id to memory/session
+# if "memory_manager" not in st.session_state:
+#     st.session_state.memory_manager = MemoryManager()
 
-if "session_id" not in st.session_state:
-    st.session_state.session_id = st.session_state.memory_manager.create_session(user_id)
+# if "session_id" not in st.session_state:
+#     st.session_state.session_id = st.session_state.memory_manager.create_session(user_id)
 
 
 # ---------------- Env ----------------
@@ -110,15 +110,47 @@ def find_similar_demo(query: str, threshold: float = 0.88):
 st.set_page_config(page_title="Autism Support Assistant", page_icon="🧩", layout="wide")
 st.title("🧩 Autism Support Assistant")
 
-if "history" not in st.session_state:
+# ---------------- Memory Manager (Per-User Session Files) ----------------
+# Each user has their own JSON memory file inside /sessions
+if "memory_manager" not in st.session_state or st.session_state.get("user_id") != user_id:
+    st.session_state.memory_manager = MemoryManager(user_id)  # ← pass user_id to manage their own session file
+    st.session_state.user_id = user_id
+    st.session_state.session_id = st.session_state.memory_manager.create_session(user_id)
     st.session_state.history = []
 
-# ---------------- Memory Manager ----------------
-if "memory_manager" not in st.session_state:
-    st.session_state.memory_manager = MemoryManager()
+# ---------------- First-time Personalized Greeting ----------------
+if "greeted" not in st.session_state or not st.session_state.greeted:
+    # Personalized greeting based on user's autism-child status
+    if has_autistic_child == 0:
+        greeting = f"""
+<b>Goal:</b> Welcome {user_name}! I’m your Autism Support Assistant. I'm here to help you support your child's unique journey.  
+<br><b>Why it matters:</b> Parenting a child on the spectrum comes with challenges, but also countless moments of joy and growth. Having the right support makes a big difference.  
+<br><b>Step-by-step guide:</b>  
+1. You can ask me questions about communication, behavior, therapy, or parenting strategies.  
+2. I’ll provide structured, compassionate guidance every time.  
+3. You can revisit past chats — I remember what we discussed.  
+<br><b>Friendly tip:</b> How is your child doing today? 😊  
+<br><b>📚 References & Resources:</b> Autism Parenting Magazine, CDC Developmental Milestones, CereAura Platform.  
+<br><i>This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis.</i>
+"""
+    else:
+        greeting = f"""
+<b>Goal:</b> Hello {user_name}! I’m your Autism Support Assistant — here to guide you in understanding autism and supporting families affected by it.  
+<br><b>Why it matters:</b> Building awareness and empathy helps create inclusive, supportive environments for individuals on the spectrum.  
+<br><b>Step-by-step guide:</b>  
+1. You can ask me about early signs, interventions, or how to support others.  
+2. I’ll provide well-structured, evidence-based information.  
+3. You can revisit past chats — I remember what we discussed.  
+<br><b>Friendly tip:</b> What kind of guidance are you looking for today? 🌟  
+<br><b>📚 References & Resources:</b> Autism Speaks, WHO Resources, CereAura Platform.  
+<br><i>This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis.</i>
+"""
 
-if "session_id" not in st.session_state:
-    st.session_state.session_id = st.session_state.memory_manager.create_session("default_user")
+    # Add greeting to memory/history, but do NOT display it yet
+    st.session_state.history = [{"role": "assistant", "content": greeting}]
+    st.session_state.memory_manager.add_message(st.session_state.session_id, "assistant", greeting)
+    st.session_state.greeted = True
+    # st.stop()
 
 chat = st.container()
 for m in st.session_state.history:

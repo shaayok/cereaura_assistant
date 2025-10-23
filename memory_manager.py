@@ -50,8 +50,11 @@ def summarize_text(text: str) -> str:
 
 # ---------------- Memory Manager ----------------
 class MemoryManager:
-    def __init__(self, save_path="session_memory.json", max_recent=5):
-        self.save_path = save_path
+    def __init__(self, user_id: str, base_folder="sessions", max_recent=5):
+        self.user_id = user_id
+        self.base_folder = Path(base_folder)
+        self.base_folder.mkdir(exist_ok=True)
+        self.save_path = self.base_folder / f"user_{user_id}.json"
         self.max_recent = max_recent
         self.sessions = {}
         self.load()
@@ -60,7 +63,7 @@ class MemoryManager:
     # Load / Save
     # ----------------------------
     def load(self):
-        if os.path.exists(self.save_path):
+        if self.save_path.exists():
             with open(self.save_path, "r", encoding="utf-8") as f:
                 self.sessions = json.load(f)
         else:
@@ -69,7 +72,7 @@ class MemoryManager:
     def save(self):
         with open(self.save_path, "w", encoding="utf-8") as f:
             json.dump(self.sessions, f, indent=2, ensure_ascii=False)
-
+            
     # ----------------------------
     # Create new session
     # ----------------------------
