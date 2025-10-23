@@ -9,6 +9,26 @@ from demo_answers import DEMO_RESPONSES
 import numpy as np
 from memory_manager import MemoryManager  # ← NEW
 
+# ---------------- User Login ----------------
+from user_login import login_page
+
+user_data = login_page()
+if not user_data:
+    st.stop()  # wait until user logs in or registers
+
+# Once logged in, you can use:
+user_id = user_data["id"]
+user_name = user_data["name"]
+has_autistic_child = user_data["has_autistic_child"]
+
+# Then pass user_id to memory/session
+if "memory_manager" not in st.session_state:
+    st.session_state.memory_manager = MemoryManager()
+
+if "session_id" not in st.session_state:
+    st.session_state.session_id = st.session_state.memory_manager.create_session(user_id)
+
+
 # ---------------- Env ----------------
 env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path, override=True)

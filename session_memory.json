@@ -77,5 +77,70 @@
         "timestamp": "2025-10-22T18:54:03.716146"
       }
     ]
+  },
+  "919df479-74da-4bf6-841d-5aa9514fc23f": {
+    "user_id": "1000",
+    "created_at": "2025-10-23T19:46:22.023795",
+    "recent": [],
+    "packed": []
+  },
+  "82c48691-197b-4d5f-b483-222363981c80": {
+    "user_id": "1000",
+    "created_at": "2025-10-23T19:47:36.525128",
+    "recent": [],
+    "packed": []
+  },
+  "dced1028-7c69-46c1-8f87-c424d647461f": {
+    "user_id": "default_user",
+    "created_at": "2025-10-23T19:53:40.741128",
+    "recent": [
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "<b>Goal:</b> Welcome you and support you with any questions or concerns you have about autism or your child's development.\n<b>Why it matters:</b> Early support and information can make a big difference for both children and parents. Whether you're seeking guidance, resources, or just a listening ear, we're here to help you every step of the way.\n<b>Step-by-step guide:</b>\n<ol>\n  <li>Let me know if you have a specific question or concern about your child, autism, or anything related to development.</li>\n  <li>If you're unsure where to start, I can suggest topics like early signs, daily routines, or how to talk to your child’s school.</li>\n  <li>If you’d like, I can provide a sample visual routine chart for morning and bedtime to help with daily structure.</li>\n</ol>\n<b>Friendly tip:</b> There are no silly questions here—every parent’s journey is unique, and your concerns are important.\n<b>📚 References & Resources:</b>\n<ul>\n  <li>For free screening tools or to book a session with a specialized therapist, visit our CereAura platform.</li>\n</ul>\n\nThis is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      }
+    ],
+    "packed": []
+  },
+  "2c011cbb-5c0d-4cf9-bbe4-1cd1a8d04bf0": {
+    "user_id": "default_user",
+    "created_at": "2025-10-23T19:57:07.462113",
+    "recent": [],
+    "packed": []
+  },
+  "7511616e-0dd9-41e1-95eb-71b01f8ac53c": {
+    "user_id": "1000",
+    "created_at": "2025-10-23T20:18:30.797259",
+    "recent": [
+      {
+        "role": "assistant",
+        "content": "<b>Goal:</b> Welcome you and offer support for any questions or concerns you have about autism or your child’s development.\n<b>Why it matters:</b> Starting the conversation helps us understand your needs and provide the right guidance, resources, or reassurance.\n<b>Step-by-step guide:</b>\n<ol>\n  <li>Let me know what’s on your mind—are you looking for information, support, or resources about autism?</li>\n  <li>If you have specific concerns about your child’s behavior, development, or daily routines, feel free to share them.</li>\n  <li>I can provide step-by-step guidance, visual aids (like routine charts), or connect you to screening and professional help if needed.</li>\n</ol>\n<b>Friendly tip:</b> There are no silly questions here—every concern is important. If you’d like, I can show you a sample visual routine chart for morning and bedtime to help with daily structure.\n<b>📚 References & Resources:</b>\n<ul>\n  <li><a href=\"https://www.cereaura.com/screening\">CereAura Free Autism Screening</a></li>\n  <li><a href=\"https://www.autismspeaks.org/\">Autism Speaks – Resources for Families</a></li>\n</ul>\n\nThis is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      },
+      {
+        "role": "user",
+        "content": "mornign routine"
+      },
+      {
+        "role": "assistant",
+        "content": "<b>Goal:</b> Create and implement a consistent morning routine for your child.\n<b>Why it matters:</b> A predictable morning routine helps children, especially those with autism, feel secure and confident. It reduces anxiety, improves cooperation, and sets a positive tone for the day.\n\n<b>Step-by-step guide:</b>\n<ol>\n  <li><b>Identify key activities:</b> List out the essential steps for the morning (e.g., wake up, use the bathroom, brush teeth, wash face, get dressed, eat breakfast, pack bag).</li>\n  <li><b>Use visual or verbal cues:</b> Create a visual schedule using pictures, a chart, or a mobile app. This helps your child understand what comes next. [[image:morning_routine_chart]]</li>\n  <li><b>Introduce the routine gradually:</b> Start with the most important steps. Teach one or two at a time until your child is comfortable, then add more.</li>\n  <li><b>Be consistent:</b> Do the activities in the same order every day to build predictability.</li>\n  <li><b>Give clear instructions:</b> Use simple, step-by-step directions (e.g., “First, brush your teeth. Then, wash your face.”).</li>\n  <li><b>Prepare for transitions:</b> Give warnings before moving to the next activity (e.g., “In 5 minutes, we will get dressed.”).</li>\n  <li><b>Model the routine:</b> Do the routine together at first, using the visual schedule as a guide.</li>\n  <li><b>Encourage independence:</b> Gradually step back and let your child follow the schedule on their own, offering less help over time.</li>\n  <li><b>Reinforce success:</b> Praise your child when they complete steps or the whole routine (“Great job finishing your morning routine!”).</li>\n  <li><b>Adjust as needed:</b> Be flexible for special events, but try to keep the main steps consistent.</li>\n</ol>\n\n<b>Friendly tip:</b> Routines are your child’s safety net! Visual schedules and gentle reminders can make mornings calmer for everyone.\n\n<b>📚 References & Resources:</b>\n<ul>\n  <li>CereAura Data.pdf – Routine and Visual Schedule Guidance</li>\n  <li><a href=\"https://www.cereaura.com/screening\">CereAura Free Autism Screening</a></li>\n  <li><a href=\"https://www.autismspeaks.org/tool-kit/100-day-kit-young-children\">Autism Speaks Morning Routine Toolkit</a></li>\n</ul>\n\nThis is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      },
+      {
+        "role": "user",
+        "content": "how can i reduce anxiety and improve focus in my child?"
+      },
+      {
+        "role": "assistant",
+        "content": "<b>Create a calm, predictable environment</b><br><br><b>Goal:</b> Reduce anxiety, improve focus, and prevent challenging behaviors by maintaining a structured and predictable daily environment. Children with autism often have heightened sensitivity to changes, unpredictability, or sensory overload (DSM-5, American Psychiatric Association, 2013).<br><br>WHO and CDC recommend structured environments as part of effective parent-mediated interventions.<br><br> <b>Why it matters:</b><br>Sudden changes, loud noises, or cluttered spaces can trigger distress, meltdowns, or avoidance behaviors in children with autism. Post-war trauma or stressful environments increase sensitivity. Creating predictability helps children anticipate what comes next, reduces anxiety, and supports engagement in therapy or learning activities (Klin et al., 2007). Structured routines also foster independence.<br><br> <b>Step-by-step guide:</b><br>1. Establish daily routines: set consistent times for waking, meals, therapy, play, bedtime. Use visual schedules.<br>2. Organize spaces: designate clear areas for specific activities.<br>3. Minimize sensory overload: calm colors, soft lighting, reduced noise/clutter.<br>4. Prepare for transitions: give warnings, use timers or countdowns.<br>5. Use consistent cues: pair verbal instructions with visual/tactile cues.<br>6. Offer choices within limits: let your child pick between two options.<br>7. Introduce change gradually: make small, incremental adjustments.<br>8. Monitor stress signals: watch for pacing, fidgeting, irritability.<br>9. Use calming routines: deep breathing, quiet time, or favorite activities.<br>10. Collaborate with caregivers and therapists: ensure consistency across settings.<br><br> <b>Friendly tip:</b> “Think of a calm environment like a safe harbor! When everything is predictable, your child can focus, learn, and enjoy the day without worry.”<br><br> <b>📚 References & Resources:</b><br>• American Psychiatric Association. (2013). <i>DSM-5: Autism Spectrum Disorder criteria.</i><br>• Klin, A., et al. (2007). <i>Visual fixation patterns and social competence in autism.</i> Nature, 447, 587–590.<br>• WHO (2021). <i>Parent Skills Training Program for Families of Children with Developmental Disorders or Delays.</i><br>• CDC (2023). <i>Autism Spectrum Disorder (ASD) Treatment and Behavior Supports.</i> <a href='https://www.cdc.gov/ncbddd/autism/treatment.html' target='_blank'>Link</a><br>"
+      }
+    ],
+    "packed": [
+      {
+        "summary": "The user greeted with \"hi.\"",
+        "timestamp": "2025-10-23T20:20:35.873606"
+      }
+    ]
   }
 }
