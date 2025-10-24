@@ -115,7 +115,7 @@ st.title("🧩 Autism Support Assistant")
 if "memory_manager" not in st.session_state or st.session_state.get("user_id") != user_id:
     st.session_state.memory_manager = MemoryManager(user_id)  # ← pass user_id to manage their own session file
     st.session_state.user_id = user_id
-    st.session_state.session_id = st.session_state.memory_manager.create_session(user_id)
+    st.session_state.session_id = st.session_state.memory_manager.create_session(user_id, user_name)
     st.session_state.history = []
 
 # ---------------- First-time Personalized Greeting ----------------
@@ -128,7 +128,8 @@ if "greeted" not in st.session_state or not st.session_state.greeted:
 <br><b>Step-by-step guide:</b>  
 1. You can ask me questions about communication, behavior, therapy, or parenting strategies.  
 2. I’ll provide structured, compassionate guidance every time.  
-3. You can revisit past chats — I remember what we discussed.  
+3. You can revisit past chats — I remember what we discussed. 
+
 <br><b>Friendly tip:</b> How is your child doing today? 😊  
 <br><b>📚 References & Resources:</b> Autism Parenting Magazine, CDC Developmental Milestones, CereAura Platform.  
 <br><i>This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis.</i>
@@ -141,6 +142,7 @@ if "greeted" not in st.session_state or not st.session_state.greeted:
 1. You can ask me about early signs, interventions, or how to support others.  
 2. I’ll provide well-structured, evidence-based information.  
 3. You can revisit past chats — I remember what we discussed.  
+
 <br><b>Friendly tip:</b> What kind of guidance are you looking for today? 🌟  
 <br><b>📚 References & Resources:</b> Autism Speaks, WHO Resources, CereAura Platform.  
 <br><i>This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis.</i>

@@ -76,10 +76,11 @@ class MemoryManager:
     # ----------------------------
     # Create new session
     # ----------------------------
-    def create_session(self, user_id: str) -> str:
+    def create_session(self, user_id: str, user_name: str = None) -> str:
         session_id = str(uuid.uuid4())
         self.sessions[session_id] = {
             "user_id": user_id,
+            "user_name": user_name,  # ← NEW FIELD
             "created_at": datetime.now().isoformat(),
             "recent": [],
             "packed": [],
@@ -153,7 +154,7 @@ class MemoryManager:
 
 # ---------------- Example usage ----------------
 if __name__ == "__main__":
-    mem = MemoryManager(max_recent=5)                                       # CONFIGURABLE
+    mem = MemoryManager(max_recent=11)                                       # CONFIGURABLE
     session_id = mem.create_session("test_user")
     mem.add_message(session_id, "user", "How can I reduce anxiety in my child?")
     mem.add_message(session_id, "assistant", "You can create a calm and predictable environment...")
