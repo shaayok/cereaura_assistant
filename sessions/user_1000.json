@@ -82,5 +82,45 @@
         "timestamp": "2025-10-24T14:28:48.741031"
       }
     ]
+  },
+  "0ea23108-7db1-4822-ae99-7407ccf67113": {
+    "user_id": "1000",
+    "user_name": "Abhigyan Sen",
+    "created_at": "2025-10-28T17:07:31.067124",
+    "recent": [
+      {
+        "role": "assistant",
+        "content": "\n<b>Goal:</b> Welcome Abhigyan Sen! I’m your Autism Support Assistant. I'm here to help you support your child's unique journey.  \n<br><b>Why it matters:</b> Parenting a child on the spectrum comes with challenges, but also countless moments of joy and growth. Having the right support makes a big difference.  \n<br><b>Step-by-step guide:</b>  \n1. You can ask me questions about communication, behavior, therapy, or parenting strategies.  \n2. I’ll provide structured, compassionate guidance every time.  \n3. You can revisit past chats — I remember what we discussed. \n\n<br><b>Friendly tip:</b> How is your child doing today? 😊  \n<br><b>📚 References & Resources:</b> Autism Parenting Magazine, CDC Developmental Milestones, CereAura Platform.  \n<br><i>This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis.</i>\n"
+      },
+      {
+        "role": "user",
+        "content": "my child suffers from stress, what should i do?"
+      },
+      {
+        "role": "assistant",
+        "content": "<b>Goal:</b> Help your child manage and reduce stress effectively.\n<br><b>Why it matters:</b> High stress can lead to meltdowns, anxiety, and difficulty learning or interacting. Supporting your child’s emotional regulation builds their confidence and well-being.\n<br><b>Step-by-step guide:</b>\n1. <b>Identify Triggers:</b> Observe and note what situations or environments cause your child stress (e.g., loud noises, changes in routine, difficult tasks). Keep a simple journal to spot patterns.\n2. <b>Teach Body Awareness:</b> Gently help your child recognize early signs of stress—like clenched fists, pacing, or a louder voice. Use mirrors, pictures, or simple role-play to practice noticing these signals.\n3. <b>Create a Calm Space:</b> Designate a “calm corner” at home with soft toys, pillows, or favorite items where your child can go to relax.\n4. <b>Use Coping Tools:</b> Teach simple calming techniques, such as deep breathing (smell the flower, blow out the candle), squeezing a stress ball, or listening to soft music.\n5. <b>Maintain Predictable Routines:</b> Visual schedules and clear routines help reduce uncertainty, which lowers stress for many autistic children.\n6. <b>Offer Choices:</b> Giving your child small choices (which shirt to wear, which snack to eat) can help them feel more in control and less anxious.\n7. <b>Practice Coping Skills:</b> Use structured role-play to practice handling mildly stressful situations, gradually building your child’s resilience.\n8. <b>Track Progress:</b> Keep notes on what works and what doesn’t, and adjust your approach as needed.\n\n<br><b>Friendly tip:</b> Celebrate small successes! Even noticing and naming a feeling is a big step for many children.\n<br><b>📚 References & Resources:</b>\n<ul>\n  <li>Data ChatBot.pdf (meltdown and stress strategies)</li>\n  <li>CereAura Data.pdf (stress trigger identification and body awareness)</li>\n  <li>Autism Parenting Magazine</li>\n  <li>CDC Developmental Milestones</li>\n</ul>\nThis is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      },
+      {
+        "role": "user",
+        "content": "morning routine"
+      },
+      {
+        "role": "assistant",
+        "content": "<b>Here’s a simple structured morning routine for a child with autism:</b><br><br> 1. Wake up and wash face.<br> 2. Use the toilet.<br> 3. Brush teeth.<br><br> 4. Get dressed.<br> 5. Eat breakfast with the family.<br> 6. Pack school bag or prepare for daily activities.<br> <b>Overall, simple morning routine:</b><br><br> ⚠️ This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis."
+      }
+    ],
+    "packed": []
+  },
+  "6048d09e-3040-4188-abac-c892f8799e92": {
+    "user_id": "1000",
+    "user_name": "Abhigyan Sen",
+    "created_at": "2025-10-29T13:10:11.369575",
+    "recent": [
+      {
+        "role": "assistant",
+        "content": "\n<b>Goal:</b> Welcome Abhigyan Sen! I’m your Autism Support Assistant. I'm here to help you support your child's unique journey.  \n<br><b>Why it matters:</b> Parenting a child on the spectrum comes with challenges, but also countless moments of joy and growth. Having the right support makes a big difference.  \n<br><b>Step-by-step guide:</b>  \n1. You can ask me questions about communication, behavior, therapy, or parenting strategies.  \n2. I’ll provide structured, compassionate guidance every time.  \n3. You can revisit past chats — I remember what we discussed. \n\n<br><b>Friendly tip:</b> How is your child doing today? 😊  \n<br><b>📚 References & Resources:</b> Autism Parenting Magazine, CDC Developmental Milestones, CereAura Platform.  \n<br><i>This is guidance, not diagnosis. You can always conduct free screening on our CereAura platform or book a session with a specialized therapist for diagnosis.</i>\n"
+      }
+    ],
+    "packed": []
   }
 }

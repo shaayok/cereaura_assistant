@@ -14,20 +14,12 @@ from user_login import login_page
 
 user_data = login_page()
 if not user_data:
-    st.stop()  # wait until user logs in or registers
+    st.stop()                           # wait until user logs in or registers
 
 # Once logged in:
 user_id = user_data["id"]
 user_name = user_data["name"]
 has_autistic_child = user_data["has_autistic_child"]
-
-# # Then pass user_id to memory/session
-# if "memory_manager" not in st.session_state:
-#     st.session_state.memory_manager = MemoryManager()
-
-# if "session_id" not in st.session_state:
-#     st.session_state.session_id = st.session_state.memory_manager.create_session(user_id)
-
 
 # ---------------- Env ----------------
 env_path = Path(__file__).parent / ".env"
@@ -111,7 +103,6 @@ st.set_page_config(page_title="Autism Support Assistant", page_icon="🧩", layo
 st.title("🧩 Autism Support Assistant")
 
 # ---------------- Memory Manager (Per-User Session Files) ----------------
-# Each user has their own JSON memory file inside /sessions
 if "memory_manager" not in st.session_state or st.session_state.get("user_id") != user_id:
     st.session_state.memory_manager = MemoryManager(user_id)  # ← pass user_id to manage their own session file
     st.session_state.user_id = user_id
@@ -120,7 +111,6 @@ if "memory_manager" not in st.session_state or st.session_state.get("user_id") !
 
 # ---------------- First-time Personalized Greeting ----------------
 if "greeted" not in st.session_state or not st.session_state.greeted:
-    # Personalized greeting based on user's autism-child status
     if has_autistic_child == 0:
         greeting = f"""
 <b>Goal:</b> Welcome {user_name}! I’m your Autism Support Assistant. I'm here to help you support your child's unique journey.  

@@ -50,3 +50,7 @@ tmp/
 temp/
 .cache/
 db.lock
+
+# Do not Track
+data/*
+!data/.gitkeep
