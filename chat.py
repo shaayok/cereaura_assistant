@@ -21,6 +21,53 @@ user_id = user_data["id"]
 user_name = user_data["name"]
 has_autistic_child = user_data["has_autistic_child"]
 
+# ---------------- LOGOUT FUNCTIONALITY ----------------
+def logout():
+    """Clear session state and force a rerun to go back to login."""
+    # Clear the specific login/user data keys
+    for key in ["user_data", "user_id", "session_id", "history", "greeted", "memory_manager"]:
+        if key in st.session_state:
+            del st.session_state[key]
+    st.rerun()
+
+# --- CSS to style the button and make it sticky top-right ---
+st.markdown(
+    """
+    <style>
+    /* 1. Target the div containing the button and make it sticky (fixed position) */
+    div.row-widget.stButton:has(> button#logout_button_id) {
+        position: fixed;
+        top: 10px;
+        right: 20px; /* Adjusted from 10px for better margin */
+        z-index: 1000;
+    }
+    
+    /* 2. Style the actual Streamlit button */
+    .stButton>button#logout_button_id {
+        background-color: #FF4B4B; /* Red background color */
+        color: white; /* White text color */
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+
+    /* 3. Style the button on hover */
+    .stButton>button#logout_button_id:hover {
+        background-color: #e04444; /* Slightly darker red on hover */
+        color: white;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Place the Streamlit button with a specific 'key' that matches the CSS ID
+if st.button("🔴 Log Out", key="logout_button_id"):
+    logout()
+# ---------------- END LOGOUT FUNCTIONALITY ----------------
+
+
 # ---------------- Env ----------------
 env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path, override=True)
